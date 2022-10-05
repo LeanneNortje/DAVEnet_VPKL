@@ -1,0 +1,7 @@
+{
+    "in_channels": 40,
+    "out_channels": 512,
+    "kernel_size": 4,
+    "stride": 2,
+    "padding": 1 
+}

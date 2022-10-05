@@ -1,0 +1,23 @@
+{
+    "data_train": "Datasets/Flickr8k_text/Flickr_8k.trainImages.txt", 
+    "data_val": "Datasets/Flickr8k_text/Flickr_8k.devImages.txt", 
+    "data_test": "Datasets/Flickr8k_text/Flickr_8k.testImages.txt", 
+
+    "audio_base": "Datasets/flickr_audio", 
+    "image_base": "Datasets/Flicker8k_Dataset", 
+
+    "out_dir": "data/", 
+
+    "audio_config": {
+        "audio_type": "melspectrogram",
+        "preemph_coef": 0.97,
+        "sample_rate": 16000,
+        "window_size": 0.025,
+        "window_stride": 0.01,
+        "window_type": "hamming",
+        "num_mel_bins": 40,
+        "target_length": 2014,
+        "fmin": 20
+    }
+
+}

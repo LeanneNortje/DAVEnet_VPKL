@@ -1,0 +1,21 @@
+{
+    "hindi_data_train": "Datasets/PlacesHindi100k/PlacesHindi100k_train.json", 
+    "hindi_data_val": "Datasets/PlacesHindi100k/PlacesHindi100k_dev.json", 
+    "hindi_data_test": "Datasets/PlacesHindi100k/PlacesHindi100k_test.json", 
+    "english_data_train": "Datasets/PlacesAudio_400k_distro/metadata/train.json", 
+    "english_data_val": "Datasets/PlacesAudio_400k_distro/metadata/val.json", 
+    "out_dir": "data/", 
+
+    "audio_config": {
+        "audio_type": "melspectrogram",
+        "preemph_coef": 0.97,
+        "sample_rate": 16000,
+        "window_size": 0.025,
+        "window_stride": 0.01,
+        "window_type": "hamming",
+        "num_mel_bins": 40,
+        "target_length": 2014,
+        "fmin": 20
+    }
+
+}

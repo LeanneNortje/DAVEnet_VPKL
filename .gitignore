@@ -1,0 +1,13 @@
+data/flickr/
+data/*.json
+data/*.npz
+
+model_metadata/
+
+pretrained_cpc/
+
+visual_keys/
+
+.ipynb_checkpoints/
+*/__pycache__/*
+*/__pycache__/*.pyc

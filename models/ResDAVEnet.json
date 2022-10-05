@@ -1,0 +1,104 @@
+{
+    "conv_layers": [
+        {
+            "in_channels": 1,
+            "out_channels": 128,
+            "kernel_size": [40, 1],
+            "stride": [1, 1],
+            "padding": [0, 0] 
+        },
+        {
+            "residual": true,
+            "in_channels": 128,
+            "out_channels": [256, 256],
+            "kernel_size": [[1, 9], [1, 9]],
+            "stride": [[1, 2], [1, 1]],
+            "padding": [[0, 4], [0, 4]],
+            "downsample_layer": {
+                "in_channels": 128,
+                "out_channels": 256,
+                "kernel_size": [1, 1],
+                "stride": [1, 2],
+                "padding": [0, 0]
+            }
+        },
+        {
+            "residual": true,
+            "in_channels": 256,
+            "out_channels": [256, 256],
+            "kernel_size": [[1, 9], [1, 9]],
+            "stride": [[1, 1], [1, 1]],
+            "padding": [[0, 4], [0, 4]]
+        },
+        {
+            "residual": true,
+            "in_channels": 256,
+            "out_channels": [256, 256],
+            "kernel_size": [[1, 9], [1, 9]],
+            "stride": [[1, 2], [1, 1]],
+            "padding": [[0, 4], [0, 4]],
+            "downsample_layer": {
+                "in_channels": 256,
+                "out_channels": 256,
+                "kernel_size": [1, 1],
+                "stride": [1, 2],
+                "padding": [0, 0]
+            }
+        },
+        {
+            "residual": true,
+            "in_channels": 256,
+            "out_channels": [256, 256],
+            "kernel_size": [[1, 9], [1, 9]],
+            "stride": [[1, 1], [1, 1]],
+            "padding": [[0, 4], [0, 4]]
+        },
+        {
+            "residual": true,
+            "in_channels": 256,
+            "out_channels": [512, 512],
+            "kernel_size": [[1, 9], [1, 9]],
+            "stride": [[1, 2], [1, 1]],
+            "padding": [[0, 4], [0, 4]],
+            "downsample_layer": {
+                "in_channels": 256,
+                "out_channels": 512,
+                "kernel_size": [1, 1],
+                "stride": [1, 2],
+                "padding": [0, 0]
+            }
+        },
+        {
+            "residual": true,
+            "in_channels": 512,
+            "out_channels": [512, 512],
+            "kernel_size": [[1, 9], [1, 9]],
+            "stride": [[1, 1], [1, 1]],
+            "padding": [[0, 4], [0, 4]]
+        },
+        {
+            "residual": true,
+            "in_channels": 512,
+            "out_channels": [2048, 2048],
+            "kernel_size": [[1, 9], [1, 9]],
+            "stride": [[1, 2], [1, 1]],
+            "padding": [[0, 4], [0, 4]],
+            "downsample_layer": {
+                "in_channels": 512,
+                "out_channels": 2048,
+                "kernel_size": [1, 1],
+                "stride": [1, 2],
+                "padding": [0, 0]
+            }
+        },
+        {
+            "residual": true,
+            "in_channels": 2048,
+            "out_channels": [2048, 2048],
+            "kernel_size": [[1, 9], [1, 9]],
+            "stride": [[1, 1], [1, 1]],
+            "padding": [[0, 4], [0, 4]]
+        }
+
+    ]
+}
