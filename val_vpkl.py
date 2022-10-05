@@ -1,10 +1,9 @@
 #_________________________________________________________________________________________________
 #
 # Author: Leanne Nortje
-# Year: 2020
+# Year: 2022
 # Email: nortjeleanne@gmail.com
 #_________________________________________________________________________________________________
-# adapted from https://github.com/dharwath
 
 import argparse
 import torch
@@ -362,7 +361,7 @@ def spawn_training(rank, world_size, image_base, args):
             for word in images_for_keywords:
                 for im_fn, _ in images_for_keywords[word]:
                     image = LoadImage(
-                        Path(args['path']) / Path('Flicker8k_Dataset') / Path((im_fn.stem) + '.jpg'), resize, image_normalize, to_tensor)
+                        Path('/storage/Datasets/Flicker8k_Dataset') / Path((im_fn.stem) + '.jpg'), resize, image_normalize, to_tensor)
                     images.append(image.unsqueeze(0).cpu())
                     # break
 
