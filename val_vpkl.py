@@ -361,9 +361,8 @@ def spawn_training(rank, world_size, image_base, args):
             for word in images_for_keywords:
                 for im_fn, _ in images_for_keywords[word]:
                     image = LoadImage(
-                        Path('/storage/Datasets/Flicker8k_Dataset') / Path((im_fn.stem) + '.jpg'), resize, image_normalize, to_tensor)
+                        Path(args['path']) / Path('Flicker8k_Dataset') / Path((im_fn.stem) + '.jpg'), resize, image_normalize, to_tensor)
                     images.append(image.unsqueeze(0).cpu())
-                    # break
 
                 iVOCAB[num_word] = word
                 words_to_iVOCAB[word] = num_word
