@@ -2,7 +2,8 @@ data/flickr/
 data/*.json
 data/*.npz
 
-model_metadata/
+model_metadata/**/*.pt
+model_metadata/**/tensorboard/
 
 pretrained_cpc/
 
