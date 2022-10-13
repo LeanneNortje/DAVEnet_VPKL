@@ -1,2 +1,2 @@
 pretrained_cpc/best_ckpt.pt filter=lfs diff=lfs merge=lfs -text
-model_metadata/**/models/best_ckpt.pt filter=lfs diff=lfs merge=lfs -text
+model_metadata/flickr_train/AudioModel-Transformer_ImageModel-Resnet50_ArgumentsHash-8ea356d1e2_ConfigFile-English_Hindi_matchmap_DAVEnet_config/models/best_ckpt.pt filter=lfs diff=lfs merge=lfs -text
