@@ -1,7 +1,7 @@
 #_________________________________________________________________________________________________
 #
 # Author: Leanne Nortje
-# Year: 2020
+# Year: 2022
 # Email: nortjeleanne@gmail.com
 #_________________________________________________________________________________________________
 # adapted from https://github.com/dharwath
@@ -31,8 +31,6 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from torchvision import transforms
 from training import validate
-import apex
-from apex import amp
 import time
 from tqdm import tqdm
 

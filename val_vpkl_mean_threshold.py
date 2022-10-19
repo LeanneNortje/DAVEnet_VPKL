@@ -30,8 +30,6 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from torchvision import transforms
 from training import validate
-import apex
-from apex import amp
 import time
 from tqdm import tqdm
 

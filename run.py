@@ -1,7 +1,7 @@
 #_________________________________________________________________________________________________
 #
 # Author: Leanne Nortje
-# Year: 2020
+# Year: 2022
 # Email: nortjeleanne@gmail.com
 #_________________________________________________________________________________________________
 # adapted from https://github.com/dharwath
@@ -32,8 +32,6 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 from PIL import Image
 from torchvision import transforms
-import apex
-from apex import amp
 import time
 
 BACKEND = "nccl"

@@ -1,7 +1,7 @@
 #_________________________________________________________________________________________________
 #
 # Author: Leanne Nortje
-# Year: 2020
+# Year: 2022
 # Email: nortjeleanne@gmail.com
 #_________________________________________________________________________________________________
 
@@ -17,8 +17,6 @@ from models.util import *
 from losses import compute_matchmap_similarity_matrix_loss
 from tqdm import tqdm
 import sys
-import apex
-from apex import amp
 import warnings
 warnings.filterwarnings("ignore")
 
