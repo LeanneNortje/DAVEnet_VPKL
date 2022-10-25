@@ -1,6 +1,6 @@
 # Using DAVENet to do VPKL
 
-This repository includes the code used to implement the DAVEnet experiments in the paper: (TOWARDS VISUALLY PROMPTED KEYWORD LOCALISATION FOR ZERO-RESOURCE SPOKEN LANGUAGES)[https://arxiv.org/pdf/2210.06229.pdf]. 
+This repository includes the code used to implement the DAVEnet experiments in the paper: [TOWARDS VISUALLY PROMPTED KEYWORD LOCALISATION FOR ZERO-RESOURCE SPOKEN LANGUAGES](https://arxiv.org/pdf/2210.06229.pdf). 
 
 ## Disclaimer
 
@@ -22,7 +22,7 @@ cd DAVEnet_VPKL/
 
 ## VPKL visual keys
 
-To obtain the visual keys used for testing, downlad the ```data``` and ```visual_keys``` folder from (here)[https://github.com/LeanneNortje/VPKL].
+To obtain the visual keys used for testing, downlad the ```data``` and ```visual_keys``` folder from [here](https://github.com/LeanneNortje/VPKL).
 
 ## Datasets
 
