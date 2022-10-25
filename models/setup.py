@@ -16,12 +16,7 @@ import torch
 import shutil
 
 config_library = {
-    "multilingual": "English_Hindi_DAVEnet_config.json",
-    "multilingual+matchmap": "English_Hindi_matchmap_DAVEnet_config.json",
-    "english": "English_DAVEnet_config.json",
-    "english+matchmap": "English_matchmap_DAVEnet_config.json",
-    "hindi": "Hindi_DAVEnet_config.json",
-    "hindi+matchmap": "Hindi_matchmap_DAVEnet_config.json",
+    "matchmap": "params.json"
 }
 
 def printDirectory(path):

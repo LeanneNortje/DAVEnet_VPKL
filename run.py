@@ -260,7 +260,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--resume", action="store_true", dest="resume",
             help="load from exp_dir if True")
-    parser.add_argument("--config-file", type=str, default='multilingual+matchmap', choices=['multilingual+matchmap'],
+    parser.add_argument("--config-file", type=str, default='matchmap', choices=['matchmap'],
             help="Model config file.")
     parser.add_argument("--restore-epoch", type=int, default=-1, help="Epoch to resore training from.")
     parser.add_argument("--image-base", default="..", help="Path to images.")

@@ -1,218 +1,76 @@
-# Direct multimodal few-shot learning of speech and images
+# Using DAVENet to do VPKL
 
-## Overview
-
-This repository includes the code used to implement the experiments in the paper: DIRECT MULTIMODAL FEW-SHOT LEARNING OF SPEECH AND IMAGES. Direct multimodal few-shot learning approaches are compared to an indirect multimodal few-shot learning approach using transfer learning. These approaches are used to learn features used in a multimodal few-shot speech-image matching task. 
+This repository includes the code used to implement the DAVEnet experiments in the paper: TOWARDS VISUALLY PROMPTED KEYWORD LOCALISATION FOR ZERO-RESOURCE SPOKEN LANGUAGES. 
 
 ## Disclaimer
 
 I provide no guarantees with this code, but I do believe the experiments in the above mentioned paper, can be reproduced with this code. Please notify me if you find any bugs or problems. 
-
-## Installing `docker` and `nvidia-docker`
-
-To install `docker` and `nvidia-docker`, [go to](https://github.com/LeanneNortje/multimodal_speech-image_matching) and follow the steps in `Installing docker` and `Installing nvidia-docker`.
-
-NOTE: To build the GPU-image in [Build docker images](#Build-docker-images), you have to install `nvidia-docker`. 
 
 ## Clone the repository 
 
 To clone the repository run:
 
 ```
-git clone https://github.com/LeanneNortje/DirectMultimodalFew-ShotLearning.git
+git clone https://github.com/LeanneNortje/DAVEnet_VPKL.git
 ```
 
 To get into the repository run:
 
 ```
-cd DirectMultimodalFew-ShotLearning/
+cd DAVEnet_VPKL/
 ```
 
-## Build docker images
+## VPKL visual keys
 
-To install the `docker`-image and all the necessary repositories, do the following depending on whether you require the image for a CPU or GPU.
-
-**CPU**
-
-```
-./build_cpu_docker_image.sh
-```
-
-**GPU**
-
-```
-./build_gpu_docker_image.sh
-```
-
-For more information regarding the base TensorFlow images used in these docker images, [visit](https://hub.docker.com/r/tensorflow/tensorflow/.)
-
-To convert the TIDigit sphere files to .wav files, you have to build the kaldi docker image. Run:
-
-```
-./build_kaldi_docker_image.sh
-```
-## Running interactive shell in the `docker`-container
-
-To run the `docker`-container each time, execute the following command depending on whether a CPU or GPU image were installed in [Build docker images](#Build-docker-images).
-
-**CPU**
-
-```
-./run_cpu_docker_image.sh
-```
-
-**GPU**
-
-```
-./run_gpu_docker_image.sh
-```
+To obtain the visual keys used for testing, downlad the ```data``` and ```visual_keys``` folder from (here)[https://github.com/LeanneNortje/VPKL].
 
 ## Datasets
 
 
-**Omniglot**
-```
-mkdir -p Datasets/Omniglot/
-cd Datasets/Omniglot/
-```
+**Flickr**
 
-From [here](https://github.com/brendenlake/omniglot/tree/master/python) download the **images_background.zip** and **images_evaluation.zip** and copy it into the `Omniglot` folder. Follow these steps to extract the data. 
-
-
-```
-unzip images_background.zip
-unzip images_evaluation.zip
-```
-
-Rename **images_background** to **train** and **images_evaluation** to **test** by running:
-
-```
-mv images_background train
-mv images_evaluation test
-cd ../../
-```
-
-**Buckeye**
-
-Download the [Buckeye](https://buckeyecorpus.osu.edu/) corpus. Copy the folders s01-s40 into the `Datasets/buckeye/` folder. We use `english.wrd` to isolate each spoken word in te corpus. 
-
-**TIDigits**
-
-Download the [TIDigits](https://catalog.ldc.upenn.edu/LDC93S10) corpus. Copy the data and ensure the `tidigits` folder in the downloaded folder is in `Datasets/TIDigits/`. We divide the TIDigits corpus into subsets for training , validation  and testing according to the speakers listed in `train_speakers.list`, `val_speakers.list` and `test_speakers.list` respectively. We use `words.wrd` to isolate each spoken word in the corpus. 
-
-
-**MNIST**
-
-The MNIST corpus will automatically be downloaded during [Data processing](#Data-processing).
-
-## Converting TIDigits sphere files to .wav files
-
-When converting the TIDigits files, you should not currently be running in a docker image. After building the kaldi docker image in [Build docker images](#Build-docker-images), run:
-
-```
-cd Datasets/TIDigits/
-./tidigits.sh
-cd ../../
-```
+Download the [images](https://www.kaggle.com/datasets/adityajn105/flickr8k) and corresponding [audio](https://groups.csail.mit.edu/sls/downloads/flickraudio/downloads.cgi) separatly and extract both in the same folder. 
 
 ## Data processing
 
-To process the data, follow the steps in [data_processing.md](Data_processing/data_processing.md). 
+If you want to redo the keyword to id mapping, the mapping of ids to its images and the images to its id(s), then run:
+```
+python3 keywords_for_flickr.py
+```
+after the paths in the script is changed to yours.
 
-## Episode generation
-
-To generate all neccessary episodes with Q number of queries with a M-way K-shot support set, run:
+To process the data, follow the next steps: 
+```
+cd preprocessing/
+python3 preprocess_flickr_dataset.py --image-base path/to/flickr-dataset
 
 ```
-cd Few_shot_learning/
-./generate_all_episodes.sh
-cd ../
-```
-
-## Data pairs
-
-All the necessary pair files are already generated since it takes very long. The files are in the cloned repository. If neccessary the steps required to generate the pairs are in [data_pairs.md](Data_pairs/data_pairs.md) 
-
 ## Training models
 
-Follow these [instructions](Running_models/training_parameters.md) to use the `./train.py` script to train the classifiers used for pair mining and as our baselines, as well as the CAE with hard pairs. 
-
-To spawn the classifier model we implemented, if you haven't already done so in [Data pairs](#Data-pairs) to mine pairs (and not use the provided mined pairs), run:
+To train a model, change the values in ```configs/params.json``` to the desired ones. Then, run:
 
 ```
-cd Running_models/
-./spawn_classifiers_models.py --test_seeds <True, False>
-cd ../
-```
-To spawn the CAE with hard pairs, run:
-
-```
-cd Running_models/
-./spawn_models.py --test_seeds <True, False>
-cd ../
+python3 run.py --image-base path/to/flickr-dataset
 ```
 
-To spawn the MCAE, run:
+## Validation
+
+To get the model's threshold for keyword detection, run
 
 ```
-cd Running_models/
-./train_MCAE_model.py --test_seeds <True, False> --test_batch_size <True, False>
-cd ../
+python3 val_vpkl_mean_threshold.py --image-base path/to/flickr-dataset
 ```
-
-To spawn the MTriplet, run:
+to get the mean threshold where each keyword instance in the validation set occurs. Then, fine-tune the threshold using 
 
 ```
-cd Running_models/
-./train_MTriplet_model.py --test_seeds <True, False> --test_batch_size <True, False>
-cd ../
+python3 val_vpkl.py --image-base path/to/flickr-dataset
 ```
+and changing the threshold in the script as wanted.
 
-All the exact parameter values neccessary to duplicate our models are already set in these spawning scripts. 
+## Testing VPKL
 
-## Unimodal K-shot tests
-
-To do the unimodal classification task for each indirect model ran and saved in `Model_data`, run:
+To do the final VPKL test on the held-out test data, run the following:
 
 ```
-cd Model_results/
-./spawn_unimodal_tests.py 
+python3 test_vpkl.py --image-base path/to/flickr-dataset
 ```
-
-This stores a log file in `/home/Model_results/Unimodal_results/` with all the unimodal classification accuracy results of a particular models' various trained instances. To get the models' accuracy mean and variance, run:
-
-```
-./get_mean_and_std_of_result.py
-cd ../
-```
-
-## Multimodal K-shot tests
-
-To do the multimodal speech-image matching task for a specific indirect model pair:
-
-```
-cd Few_shot_learning/
-./few_shot_learning.py --speech_log_fn <path to speech model log file in Model_data> \
---image_log_fn <path to image model log file in Model_data> --speech_data_fn <path to speech data> --image_data_fn <path to image data> --episode_fn <path to episode file>
-cd ../
-```
-
-This stores a log file in `/home/Model_results/Multimodal_results/` with all the multimodal speech-image matching accuracy results of a particular speech-vision model pairs' various paired trained instances. Take note that the datasets given in `--speech_data_fn` and `--image_data_fn` should match to the datasets used to generate the episodes in `--episode_fn`. And `--k` in `./get_restult.py` should match to the `K`-shot episodes of `--episode_fn`. To do this for all the trained model pairs, simply run: 
-
-```
-cd Few_shot_learning/
-./spawn_task.py
-cd ../
-```
-
-To get the overall models' accuracy mean and variance, run:
-
-```
-cd Model_results/
-./get_mean_and_std_of_result.py
-cd ../
-```
-
-## NOTE
-
-You do not have to do sections [Unimodal K-shot tests](#Unimodal-K--shot-tests) and [Multimodal K-shot tests](#Multimodal-K--shot-tests) for the direct models. You can simply run the appropriate training scripts again if one or some of the tests were not already done after training the model with the same script. 
