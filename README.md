@@ -1,6 +1,6 @@
 # Using DAVENet to do VPKL
 
-This repository includes the code used to implement the DAVEnet experiments in the paper: TOWARDS VISUALLY PROMPTED KEYWORD LOCALISATION FOR ZERO-RESOURCE SPOKEN LANGUAGES. 
+This repository includes the code used to implement the DAVEnet experiments in the paper: (TOWARDS VISUALLY PROMPTED KEYWORD LOCALISATION FOR ZERO-RESOURCE SPOKEN LANGUAGES)[https://arxiv.org/pdf/2210.06229.pdf]. 
 
 ## Disclaimer
 
@@ -74,3 +74,5 @@ To do the final VPKL test on the held-out test data, run the following:
 ```
 python3 test_vpkl.py --image-base path/to/flickr-dataset
 ```
+
+NOTE: checkpoints for models used in the paper, is given in this repository.
